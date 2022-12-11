@@ -1,0 +1,10 @@
+<div class="item-list">
+    <h3>  {{article.genericName}}
+        <ng-container *ngIf="selectedOptionName !=='aucune' "> : {{selectionText}} </ng-container>
+
+    </h3>
+
+    <mat-chip-listbox class="mat-mdc-chip-set-stacked">
+          <mat-chip-option *ngFor="let option of article.options " (selectionChange)="onChange(option)"> {{option.name}} </mat-chip-option>
+    </mat-chip-listbox>
+</div>

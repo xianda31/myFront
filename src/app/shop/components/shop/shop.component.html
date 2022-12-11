@@ -1,1 +1,12 @@
-<p>shop works!</p>
+<mat-card>
+    <mat-card-content>
+
+
+            <div *ngFor="let article of articles">
+                <app-shop-item [article]=article> </app-shop-item>
+            </div>
+
+
+    </mat-card-content>
+</mat-card>
+

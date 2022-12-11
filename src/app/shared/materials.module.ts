@@ -8,13 +8,17 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner' ;
 import {MatSelectModule} from '@angular/material/select';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 @NgModule({
   exports: [
     MatToolbarModule,
+    MatSidenavModule,
     MatCardModule,
     MatListModule,
     MatButtonModule,
@@ -24,7 +28,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatCheckboxModule,
     MatRadioModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatChipsModule,
+MatGridListModule
+
   ]
 })
 export class MaterialsModule {}
