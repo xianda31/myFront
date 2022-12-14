@@ -1,0 +1,12 @@
+<mat-card>
+    <mat-card-header>
+        <app-get-name></app-get-name>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <div *ngFor="let article of articles">
+            <app-shop-item [article]=article> </app-shop-item>
+        </div>
+    </mat-card-content>
+</mat-card>
+

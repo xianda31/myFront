@@ -1,3 +1,11 @@
 .main-content {
     box-sizing: border-box;
   }
+  ul {
+    list-style: none;
+  }
+
+  li {
+    display: inline-block;
+    margin-right: 20px;;
+  }

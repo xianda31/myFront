@@ -13,6 +13,9 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 @NgModule({
@@ -30,7 +33,10 @@ import {MatGridListModule} from '@angular/material/grid-list';
     MatProgressSpinnerModule,
     MatSelectModule,
     MatChipsModule,
-MatGridListModule
+    MatGridListModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule
+
 
   ]
 })
