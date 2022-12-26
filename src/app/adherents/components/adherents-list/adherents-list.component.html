@@ -1,1 +1,33 @@
-<p>adherents-list works!</p>
+
+<div class="mat-elevation-z8 adhTable">
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 adhTable">
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column.columnDef">
+      <th mat-header-cell *matHeaderCellDef>
+        {{column.header}}
+      </th>
+      <td mat-cell *matCellDef="let row">
+        {{column.cell(row)}}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+
+    <tr mat-row
+    (click)="clickedRows.add(row)"
+      [class.demo-row-is-clicked]="clickedRows.has(row)"
+      *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons
+                 aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>
+
+
+
+<ul>
+  <li *ngFor="let clickedRow of clickedRows">
+    selection :{{clickedRow.firstName}}  {{clickedRow.lastName}}
+  </li>
+</ul>

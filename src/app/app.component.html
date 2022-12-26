@@ -5,12 +5,14 @@
     <li> <a routerLink="/adherents">Adhérents</a> </li>
     <li><a routerLink="/shop">Ventes</a></li>
   </ul>
+
+  <span> <h3>Aujourd'hui BCSTO compte {{adherentsCount}} membres </h3></span>
 </mat-toolbar>
 
 
 <div class="main-content">
 
-  <p> Aujourd'hui {{adherentNumber}} sont inscrits au Club </p>
+
 
   <router-outlet></router-outlet>
 </div>

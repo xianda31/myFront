@@ -1,0 +1,42 @@
+.adhTable {
+  width: 50%;
+
+}
+
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.demo-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-column-lastName {
+  width: 32px;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-firstName {
+  padding-left: 16px;
+  border-right: 1px solid currentColor;
+}
+
+.mat-column-license {
+  font-style: italic;
+  text-align: right;
+}
+
+.mat-column-adh_key {
+  width: 32px;
+  text-align: center;
+  font-weight: bold;
+  font-size : 12px;
+}
