@@ -1,29 +1,25 @@
 
 .container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap:10px;
 }
 
-.right-container {
+.v_container {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.adherents-list-container {
+  margin-top: 3px;;
   height: calc(100vh - 32px);
   overflow: auto;
-
-}
-.left-container {
-  margin-top: 0px;
-
-
 }
 
-mat-card{
-  width: 100%;
+.adhTable{
+  min-width: 500px;
 }
-
-.adhTable {
-  width: 100%;
-
-}
-
 
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;
@@ -43,7 +39,7 @@ mat-card{
 .mat-column-lastName {
  // width: 32px;
   padding-right: 24px;
-  text-align: center;
+  text-align: left;
 }
 
 .mat-column-firstName {

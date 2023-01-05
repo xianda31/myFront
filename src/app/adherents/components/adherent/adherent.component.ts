@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Adherent } from '../../adherent.interface';
 
@@ -10,15 +11,15 @@ import { Adherent } from '../../adherent.interface';
 
 export class AdherentComponent  implements OnInit {
 
-  @Input('adherent') adherentIn !: Adherent ;
+  @Input('adherent') adherentIn$ !: BehaviorSubject<Adherent> ;
   adherent !: Adherent;
 
   constructor(private frmbldr : FormBuilder) {}
    formGroup !: FormGroup ;
 
   ngOnInit() {
-    this.adherent = this.adherentIn ;
-    this.initForm() ;
+     this.adherentIn$.subscribe( adh => this.adherent = adh);
+     this.initForm() ;
 
   }
 
