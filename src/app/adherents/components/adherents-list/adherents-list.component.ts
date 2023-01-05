@@ -1,6 +1,6 @@
 import { Component, AfterViewInit, ViewChild, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import { Observable } from 'rxjs/internal/Observable';
 import { AdherentsService } from 'src/app/core/mongo_services/adherents.service';
 import { Adherent } from '../../adherent.interface';
 
@@ -12,7 +12,7 @@ import { Adherent } from '../../adherent.interface';
 })
 
 
-export class AdherentsListComponent implements AfterViewInit,OnInit {
+export class AdherentsListComponent implements OnInit {
 
   columns = [
     {
@@ -39,24 +39,29 @@ export class AdherentsListComponent implements AfterViewInit,OnInit {
 
   displayedColumns = this.columns.map(c => c.columnDef);
   dataSource = new MatTableDataSource<Adherent>([]) ;
-  clickedRows = new Set<Adherent>();
+  selectedAdherent$ !: Observable<Adherent> ;
+  selectedAdherent !: Adherent ;
+  selected : boolean = false;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor (private adhService : AdherentsService) {}
   ngOnInit(): void {
 
-  this.adhService._getAdherents$().subscribe(
-    (adh : Adherent[]) => {
-      this.dataSource= new MatTableDataSource<Adherent>(adh) ;
-      this.dataSource.paginator = this.paginator;
-    }
-  );
-
+    this.adhService.adherents$.subscribe(
+      (adh:Adherent[])=> this.dataSource = new MatTableDataSource<Adherent>(adh)
+    );
 };
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+
+
+  selectAdherent(adherent : Adherent){
+    this.selectedAdherent = adherent ;
+    this.selected = true;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
 

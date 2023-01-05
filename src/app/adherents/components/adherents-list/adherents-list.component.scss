@@ -1,5 +1,26 @@
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-container {
+  height: calc(100vh - 32px);
+  overflow: auto;
+
+}
+.left-container {
+  margin-top: 0px;
+
+
+}
+
+mat-card{
+  width: 100%;
+}
+
 .adhTable {
-  width: 50%;
+  width: 100%;
 
 }
 
@@ -12,6 +33,7 @@
 
 .mat-mdc-row:hover .mat-mdc-cell {
   border-color: currentColor;
+  background-color: burlywood;
 }
 
 .demo-row-is-clicked {
@@ -19,12 +41,13 @@
 }
 
 .mat-column-lastName {
-  width: 32px;
+ // width: 32px;
   padding-right: 24px;
   text-align: center;
 }
 
 .mat-column-firstName {
+ // width: 96px;
   padding-left: 16px;
   border-right: 1px solid currentColor;
 }

@@ -1,0 +1,70 @@
+<mat-card>
+  <mat-card-content>
+
+    <section>
+      <div class="example-button-row">
+        <button mat-raised-button color="primary">Sauvegarder</button>
+        <button mat-raised-button color="accent" (click)="onClear()">clear</button>
+        <button mat-raised-button color="warn">Nouveau</button>
+        <button mat-raised-button color="warn"(click)="onClose()">Exit</button>
+      </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{adherent.lastName }}</mat-label>
+        <mat-hint>nom</mat-hint>
+        <input matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>{{adherent.firstName }}</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>email</mat-label>
+        <input matInput required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>téléphone</mat-label>
+        <input matInput required>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>{{adherent.license }}</mat-label>
+        <mat-hint>n° de licence</mat-hint>
+        <input matInput>
+      </mat-form-field>
+    </div>
+
+
+    <mat-divider></mat-divider>
+
+    <mat-form-field style="width:90%" appearance="fill">
+      <mat-label>adresse</mat-label>
+      <input matInput>
+    </mat-form-field>
+
+
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>CP</mat-label>
+        <input matInput>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>ville</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </div>
+
+  </mat-card-content>
+</mat-card>
