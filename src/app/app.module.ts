@@ -6,13 +6,15 @@ import { MaterialsModule } from './shared/materials.module';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SidenavComponent } from './layout/sidenav/sidenav.component';
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,

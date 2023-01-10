@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { TitleStrategy } from '@angular/router';
 import { Observable,BehaviorSubject, tap } from 'rxjs';
 import { Adherent } from 'src/app/adherents/adherent.interface';
 import { environment } from 'src/environments/environment';
@@ -17,6 +16,7 @@ export class AdherentsService {
  constructor(private http:HttpClient) { }
 
   private _adherents$: BehaviorSubject<Adherent[]> = new BehaviorSubject<Adherent[]>([]);
+  private _adherents !: Adherent[];
   private _loaded$ = new BehaviorSubject<number>(-1);
 
   get adherents$() : Observable<Adherent[]>{
@@ -30,28 +30,30 @@ export class AdherentsService {
 
   // READ
 
-
-/*
-  _getAdherents$():BehaviorSubject<Adherent[]> {
-    this.loadAdherents().subscribe(
-      (adh : Adherent[]) => {
-        this.Adherents = adh ;
-        this.Adherents$.next(adh);
-    }
-    );
-    return this.Adherents$
-  }
-   private loadAdherents() {
-    return this.http.get<Array<Adherent>>(`${api}/adherents`);
-  };
-*/
   getAdherentsFromServer() {
     this.http.get<Array<Adherent>>(`${api}/adherents`).pipe(
       tap((adherents )=> {
         this._adherents$.next(adherents);
         console.log("loading of %d lines",adherents.length);
+        this._adherents = adherents ;
         this._loaded$.next(adherents.length);
       })
     ).subscribe();
+  }
+
+  // Update
+
+  updateById(adherent : Adherent) {
+    const foundIndex = this._adherents.findIndex((item) => item.adh_key === adherent.adh_key  ) ;
+    if (foundIndex > -1) {
+      this._adherents[foundIndex] = adherent;
+      this._adherents$.next(this._adherents);
+      console.log("maj");
+        } else {
+
+      console.log("gros malheur !!!", foundIndex,adherent);
+      };
+
+
   }
 }

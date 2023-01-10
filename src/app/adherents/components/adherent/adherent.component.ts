@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { AdherentsService } from 'src/app/core/mongo_services/adherents.service';
 import { Adherent } from '../../adherent.interface';
 
 @Component({
@@ -11,28 +11,30 @@ import { Adherent } from '../../adherent.interface';
 
 export class AdherentComponent  implements OnInit {
 
-  @Input('adherent') adherentIn$ !: BehaviorSubject<Adherent> ;
-  adherent !: Adherent;
+  @Input() adherent !: Adherent ;
 
-  constructor(private frmbldr : FormBuilder) {}
+  constructor(private frmbldr : FormBuilder ,
+              private adhService : AdherentsService )  {}
    formGroup !: FormGroup ;
 
   ngOnInit() {
-     this.adherentIn$.subscribe( adh => this.adherent = adh);
-     this.initForm() ;
+      this.initForm() ;
+
 
   }
 
-  onClear() {
-    this.adherent.lastName="";
-    this.adherent.firstName="";
-    this.adherent.email="";
-    this.adherent.phone="";
-    this.adherent.adress="";
-    this.adherent.town="";
-    this.adherent.zip="";
-    this.adherent.license=0;
-
+  onSave() {
+    this.adhService.updateById(this.adherent);
+    console.log("saving ",this.adherent);
+    //  this._adherent.lastName="";
+    // this._adherent.firstName="";
+    // this._adherent.email="";
+    // this._adherent.phone="";
+    // this._adherent.adress="";
+    // this._adherent.town="";
+    // this._adherent.zip="";
+    // this._adherent.license=0;
+    //  this.adherentIn.lastName = "";
 
   }
   onClose(){
@@ -40,15 +42,15 @@ export class AdherentComponent  implements OnInit {
   }
 
   initForm() {
-this.formGroup =  this.frmbldr.group ({
-      firstName : new FormControl(''),
-      lastName : new FormControl(''),
-      email : new FormControl(''),
-      mobile : new FormControl(''),
-      license : new FormControl(''),
-      address : new FormControl(''),
-      zip : new FormControl(''),
-      town : new FormControl(''),
+    this.formGroup =  this.frmbldr.group ({
+          firstName : new FormControl(''),
+          lastName : new FormControl(''),
+          email : new FormControl(''),
+          mobile : new FormControl(''),
+          license : new FormControl(''),
+          address : new FormControl(''),
+          zip : new FormControl(''),
+          town : new FormControl(''),
     });
 
   }

@@ -1,12 +1,10 @@
 <mat-card>
-  <mat-card-content>
-
+  <mat-card-content *ngIf="adherent">
+    <h1>Editer</h1>
     <section>
       <div class="example-button-row">
-        <button mat-raised-button color="primary">Sauvegarder</button>
-        <button mat-raised-button color="accent" (click)="onClear()">clear</button>
-        <button mat-raised-button color="warn">Nouveau</button>
-        <button mat-raised-button color="warn"(click)="onClose()">Exit</button>
+        <button mat-raised-button color="primary"(click)="onSave()">Sauvegarder</button>
+        <button mat-raised-button color="warn"(click)="onClose()">Abandonner</button>
       </div>
     </section>
 
@@ -15,13 +13,11 @@
 
     <div>
       <mat-form-field appearance="fill">
-        <mat-label>{{adherent.lastName }}</mat-label>
         <mat-hint>nom</mat-hint>
-        <input matInput>
+        <input matInput [(ngModel)]= "adherent.lastName" >
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>{{adherent.firstName }}</mat-label>
-        <input matInput>
+        <input matInput [(ngModel)]= "adherent.firstName" >
       </mat-form-field>
     </div>
 
@@ -39,16 +35,16 @@
 
     <div>
       <mat-form-field appearance="fill">
-        <mat-label>{{adherent.license }}</mat-label>
+        <mat-label></mat-label>
         <mat-hint>n° de licence</mat-hint>
-        <input matInput>
+        <input matInput [(ngModel)]="adherent.license">
       </mat-form-field>
     </div>
 
 
     <mat-divider></mat-divider>
 
-    <mat-form-field style="width:90%" appearance="fill">
+    <mat-form-field style="width:100%" appearance="fill">
       <mat-label>adresse</mat-label>
       <input matInput>
     </mat-form-field>

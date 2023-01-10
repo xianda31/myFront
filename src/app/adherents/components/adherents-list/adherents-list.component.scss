@@ -1,7 +1,10 @@
+.table-row{
+  height: 8px !important;
+}
 
 .container {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   gap:10px;
 }
 
@@ -10,17 +13,28 @@
   flex-direction: column;
 }
 
-
+.flex{
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+}
 .adherents-list-container {
   margin-top: 3px;;
   height: calc(100vh - 32px);
-  overflow: auto;
+  overflow: hidden;
 }
 
 .adhTable{
   min-width: 500px;
 }
 
+// styles ligne
+
+.mat-mdc-table .mdc-data-table__row{
+  height: 38px !important;
+
+
+}
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
@@ -35,6 +49,9 @@
 .demo-row-is-clicked {
   font-weight: bold;
 }
+
+
+// styles colonnes
 
 .mat-column-lastName {
  // width: 32px;
@@ -57,5 +74,5 @@
   width: 32px;
   text-align: center;
   font-weight: bold;
-  font-size : 12px;
+  font-size : 10px;
 }
