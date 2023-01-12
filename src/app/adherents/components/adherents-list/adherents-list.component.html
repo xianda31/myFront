@@ -3,26 +3,24 @@
 
   <div class="v_container">
     <mat-card>
+
+      <!-- card renseigner/modifier -->
+      <app-adherent [adherent]="adherentSelected"
+                    (create) = "onCreationReq($event)" >
+                  </app-adherent>
+      <br>
+
       <!-- bandeau filtrer / créer -->
-      <mat-card>
-        <mat-card-content>
-          <h1>Rechercher</h1>
-          <div>
+      <mat-card-footer>
             <mat-form-field>
               <mat-label>Rechercher</mat-label>
               <input matInput (keyup)="applyFilter($event)" #input>
               <mat-hint> {{adherentsSelectedNumber}} / {{adherentsTotalNumber}} membres </mat-hint>
             </mat-form-field>
 
-            <button mat-raised-button color="primary">Créer</button>
-          </div>
+            <!-- <button mat-raised-button color="primary">Créer</button> -->
 
-          <!-- card renseigner/modifier -->
-        </mat-card-content>
-      </mat-card>
-
-          <app-adherent [adherent]="adherentSelected"></app-adherent>
-
+      </mat-card-footer>
 
     </mat-card>
 

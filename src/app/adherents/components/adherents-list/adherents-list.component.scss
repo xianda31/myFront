@@ -21,7 +21,7 @@
 .adherents-list-container {
   margin-top: 3px;;
   height: calc(100vh - 32px);
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .adhTable{
@@ -30,11 +30,15 @@
 
 // styles ligne
 
-.mat-mdc-table .mdc-data-table__row{
-  height: 38px !important;
-
-
+.mat-mdc-table  .mdc-data-table__row{
+  height: 20px !important;    // force la valeur par defaut 52px de Material
 }
+.mat-mdc-icon-button{
+  width: 14px;
+  height:14px;
+  padding: 2px !important;    // force la valeur par defaut 52px de Material
+}
+
 .mat-mdc-row .mat-mdc-cell {
   border-bottom: 1px solid transparent;
   border-top: 1px solid transparent;
@@ -57,6 +61,7 @@
  // width: 32px;
   padding-right: 24px;
   text-align: left;
+  font-size : smaller;
 }
 
 .mat-column-firstName {
@@ -68,11 +73,12 @@
 .mat-column-license {
   font-style: italic;
   text-align: right;
+  font-size : smaller;
 }
 
 .mat-column-adh_key {
   width: 32px;
   text-align: center;
   font-weight: bold;
-  font-size : 10px;
+  font-size : smaller;
 }

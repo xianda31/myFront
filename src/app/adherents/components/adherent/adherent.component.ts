@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { AdherentsService } from 'src/app/core/mongo_services/adherents.service';
 import { Adherent } from '../../adherent.interface';
@@ -12,6 +12,7 @@ import { Adherent } from '../../adherent.interface';
 export class AdherentComponent  implements OnInit {
 
   @Input() adherent !: Adherent ;
+  @Output() create = new EventEmitter<boolean>();
 
   constructor(private frmbldr : FormBuilder ,
               private adhService : AdherentsService )  {}
@@ -19,7 +20,6 @@ export class AdherentComponent  implements OnInit {
 
   ngOnInit() {
       this.initForm() ;
-
 
   }
 
@@ -37,8 +37,8 @@ export class AdherentComponent  implements OnInit {
     //  this.adherentIn.lastName = "";
 
   }
-  onClose(){
-
+  onCreate(){
+    this.create.emit(true);
   }
 
   initForm() {

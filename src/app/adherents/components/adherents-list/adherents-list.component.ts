@@ -17,6 +17,7 @@ export class AdherentsListComponent implements OnInit {
   columns = tableColumns ;
   displayedColumns = this.columns.map(c => c.columnDef);
   dataSource = new MatTableDataSource<Adherent>([]) ;
+
   adherentSelected!: Adherent;
   adherentsTotalNumber !: number;
   adherentsSelectedNumber !: number;
@@ -28,13 +29,27 @@ export class AdherentsListComponent implements OnInit {
     this.adhService.adherents$.subscribe(
       (adh:Adherent[])=> {
         this.dataSource = new MatTableDataSource<Adherent>(adh);
-        this.adherentSelected = adh[0]
+        this.adherentSelected = adh[0] ;
         this.adherentsTotalNumber = adh.length;
         this.adherentsSelectedNumber = adh.length;
+        console.log("%d cards",adh.length);
       }
+
 
     );
 };
+
+onCreationReq(requested:boolean){
+  console.log("creationReq", requested);
+  this.adhService.createLocalNewEntry();
+  // const white ='';
+  // this.setFilter(white);
+  if (requested) {
+
+    // this.selectAdherent(this.whiteMember);
+  } else {
+  }
+}
 
   selectAdherent(adherent : Adherent){
     this.adherentSelected = adherent;
@@ -42,7 +57,10 @@ export class AdherentsListComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.setFilter(filterValue);
+  }
+  setFilter(value : any) {
+    this.dataSource.filter = value.trim().toLowerCase();
     this.adherentSelected= (this.dataSource.filteredData[0]);
     this.adherentsSelectedNumber = this.dataSource.filteredData.length;
   }
