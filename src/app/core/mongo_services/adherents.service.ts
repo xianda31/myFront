@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, tap } from 'rxjs';
-import { Adherent } from 'src/app/adherents/adherent.interface';
+import { Observable, BehaviorSubject, tap,catchError, throwError} from 'rxjs';
+import { Member, WhiteMember } from 'src/app/adherents/member.interface';
 import { environment } from 'src/environments/environment';
 
 const api = environment.server_api;
@@ -13,13 +13,13 @@ export class AdherentsService {
 
   constructor(private http: HttpClient) { }
 
-  private _adherents$: BehaviorSubject<Adherent[]> = new BehaviorSubject<Adherent[]>([]);
-  private _adherents !: Adherent[];
+  private _adherents$: BehaviorSubject<Member[]> = new BehaviorSubject<Member[]>([]);
+  private _adherents !: Member[];
 
 
   private _loaded$ = new BehaviorSubject<number>(-1);
 
-  get adherents$(): Observable<Adherent[]> {
+  get adherents$(): Observable<Member[]> {
     return this._adherents$.asObservable();
   }
 
@@ -30,16 +30,29 @@ export class AdherentsService {
 
   // CREATE
 
+  createAdherent(member: Member)  {
+    console.log("posting @\/adherent",member)
+
+    this.http.post<Member>(`${api}/adherent`, member).pipe (
+      catchError(this.handleError)
+     ).subscribe((member) => {
+          this._adherents.unshift(member);
+          this._adherents$.next(this._adherents);
+     });
+  }
+
   createLocalNewEntry() {
-    const white = { firstName: '', lastName: '', adh_key: 0, town: '', zip: '', license: 0 };
-    this._adherents.unshift(white);
+    this._adherents.unshift(WhiteMember);
     this._adherents$.next(this._adherents);
+
+    // return this.http.post<Member>(`${api}/hero/`, member)
+    //                 .pipe( catchError(err => this.handleError(err)));
   }
 
   // READ
 
   getAdherentsFromServer() {
-    this.http.get<Array<Adherent>>(`${api}/adherents`).pipe(
+    this.http.get<Array<Member>>(`${api}/adherents`).pipe(
       tap((adherents) => {
         this._adherents$.next(adherents);
         this._adherents = adherents;
@@ -52,17 +65,36 @@ export class AdherentsService {
 
   // Update
 
-  updateById(adherent: Adherent) {
-    // const foundIndex = this._adherents.findIndex((item) => item.adh_key === adherent.adh_key  ) ;
-    // if (foundIndex > -1) {
-    //   this._adherents[foundIndex] = adherent;
-    //   this._adherents$.next(this._adherents);
-    //   console.log("maj");
-    //     } else {
+  updateById(member: Member) {
+    const foundIndex = this._adherents.findIndex((item) => item._id === member._id  ) ;
+    if (foundIndex > -1) {
+      this._adherents[foundIndex] = member;
+      this._adherents$.next(this._adherents);
 
-    //   console.log("gros malheur !!!", foundIndex,adherent);
-    //   };
+
+      this.http.put<Member>(`${api}/adherent/${member._id}`,member).pipe(
+        // tap((rtn) => console.log("prev record : ",rtn))
+      ).subscribe();
+
+        } else {
+
+      console.log("oups ! : impossible de sauvegarder ", foundIndex,member);
+      };
   }
 
+
+  private handleError(error: HttpErrorResponse) {
+    if (error.status === 0) {
+      // A client-side or network error occurred. Handle it accordingly.
+      console.error('An error occurred:', error.error);
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong.
+      console.error(
+        `Backend returned code ${error.status}, body was: `, error.error);
+    }
+    // Return an observable with a user-facing error message.
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+  }
 
 }

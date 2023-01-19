@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdherentsListComponent } from './components/adherents-list/adherents-list.component';
+import { AdherentComponent } from './components/adherent/adherent.component';
 
 const routes: Routes = [
-  {path: '', component: AdherentsListComponent}
+  {path: '', component: AdherentComponent}
 ];
 
 @NgModule({

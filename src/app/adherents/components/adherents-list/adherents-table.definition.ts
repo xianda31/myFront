@@ -1,29 +1,39 @@
-import { Adherent } from '../../adherent.interface';
+import { Member } from '../../member.interface';
 
 export const tableColumns = [
   {
     columnDef: 'lastName',
     header: 'Nom',
-    cell: (element: Adherent) => `${element.lastName}`,
+    cell: (element: Member) => `${element.lastName}`,
   },
   {
     columnDef: 'firstName',
     header: 'Prénom',
-    cell: (element: Adherent) => `${element.firstName}`,
+    cell: (element: Member) => `${element.firstName}`,
+  },
+  {
+    columnDef: 'email',
+    header: 'mail',
+    cell: (element: Member) => `${element.email}`,
+  },
+  {
+    columnDef: 'city',
+    header: 'ville',
+    cell: (element: Member) => `${element.city}`,
   },
   {
     columnDef: 'license',
     header: 'N° licence',
-    cell: (element: Adherent) => `${element.license}`,
+    cell: (element: Member) => `${element.license}`,
   },
   {
-    columnDef: 'adh_key',
+    columnDef: '_id',
     header: 'key',
-    cell: (element: Adherent) => `${element.adh_key}`,
+    cell: (element: Member) => `${element._id}`,
   },
   {
     columnDef: 'icon',
     header: 'anomalie',
-    cell: (element: Adherent) => `${element.license % 2 ? 'thumb_up' : 'thumb_down'}`,
+    cell: (element: Member) => `${element.license % 2 ? 'thumb_up' : 'thumb_down'}`,
   },
 ];
