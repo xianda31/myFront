@@ -19,20 +19,21 @@ export class AdherentsListComponent implements OnInit {
   displayedColumns = this.columns.map(c => c.columnDef);
   dataSource = new MatTableDataSource<Member>([]) ;
 
-  // adherentSelected!: Member;
+  keyWord!: any;
   adherentsTotalNumber !: number;
   adherentsSelectedNumber !: number;
 
 
   constructor (private adhService : AdherentsService) {}
   ngOnInit(): void {
-
+    this.clearKeyWord() ;
     this.adhService.adherents$.subscribe(
       (adh:Member[])=> {
         this.dataSource = new MatTableDataSource<Member>(adh);
         this.adherentsTotalNumber = adh.length;
         this.adherentsSelectedNumber = adh.length;
         console.log("%d cards",adh.length);
+        this.setFilter(this.keyWord);
       }
 
 
@@ -50,10 +51,13 @@ export class AdherentsListComponent implements OnInit {
   }
   setFilter(value : any) {
     this.dataSource.filter = value.trim().toLowerCase();
-    // this.adherentSelected= (this.dataSource.filteredData[0]);
+    this.keyWord= value;
     this.adherentsSelectedNumber = this.dataSource.filteredData.length;
   }
-
+clearKeyWord() {
+  this.keyWord="" ;
+  this.setFilter(this.keyWord);
+}
 
 }
 

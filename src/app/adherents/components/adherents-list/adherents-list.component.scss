@@ -2,10 +2,11 @@
   height: 8px !important;
 }
 
+
 .container {
   display: flex;
   justify-content: space-around;
-  gap:10px;
+ // gap:10px;
 }
 
 .v_container {
@@ -19,8 +20,8 @@
   align-items: center;
 }
 .adherents-list-container {
-  margin-top: 3px;;
-  height: calc(100vh - 32px);
+  margin-top: 3px;
+ // height: calc(100vh - 62px);
   // overflow: hidden;
 }
 

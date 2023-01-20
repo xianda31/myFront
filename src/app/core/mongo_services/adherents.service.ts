@@ -44,9 +44,6 @@ export class AdherentsService {
   createLocalNewEntry() {
     this._adherents.unshift(WhiteMember);
     this._adherents$.next(this._adherents);
-
-    // return this.http.post<Member>(`${api}/hero/`, member)
-    //                 .pipe( catchError(err => this.handleError(err)));
   }
 
   // READ
@@ -63,7 +60,7 @@ export class AdherentsService {
 
 
 
-  // Update
+  // UPDATE
 
   updateById(member: Member) {
     const foundIndex = this._adherents.findIndex((item) => item._id === member._id  ) ;
@@ -71,16 +68,32 @@ export class AdherentsService {
       this._adherents[foundIndex] = member;
       this._adherents$.next(this._adherents);
 
-
       this.http.put<Member>(`${api}/adherent/${member._id}`,member).pipe(
-        // tap((rtn) => console.log("prev record : ",rtn))
+        catchError(this.handleError)
       ).subscribe();
-
         } else {
-
-      console.log("oups ! : impossible de sauvegarder ", foundIndex,member);
+      console.log("oups ! : gros malheur de sauvegarde ", foundIndex,member);
       };
   }
+
+  // DELETE
+  deleteById(member: Member) {
+    const foundIndex = this._adherents.findIndex((item) => item._id === member._id  ) ;
+    if (foundIndex > -1) {
+      this._adherents.splice(foundIndex,1);
+      this._adherents$.next(this._adherents);
+
+      this.http.delete<Member>(`${api}/adherent/${member._id}`).pipe(
+        catchError(this.handleError)
+      ).subscribe();
+        } else {
+      console.log("oups ! : gros malheur de suppression ", foundIndex,member);
+      };
+  }
+
+
+
+
 
 
   private handleError(error: HttpErrorResponse) {

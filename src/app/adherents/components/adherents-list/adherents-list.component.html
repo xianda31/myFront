@@ -2,14 +2,24 @@
 
 
   <div class="v_container">
-    <!-- bandeau filtrer / créer -->
-    <mat-card>
-      <mat-hint> {{adherentsSelectedNumber}} / {{adherentsTotalNumber}} membres  </mat-hint>
-      <mat-form-field>
-        <mat-label>Recherche</mat-label>
 
-        <input matInput (keyup)="applyFilter($event)" #input>
-      </mat-form-field>
+    <br>
+    <!-- bandeau filtrer  -->
+    <mat-card>
+      <mat-card-header>
+        <h1>Recherche par mot clef  ({{adherentsSelectedNumber}} / {{adherentsTotalNumber}} membres) :
+        </h1>
+      </mat-card-header>
+
+      <section>
+        <mat-icon matSuffix mat-icon-button aria-label="Clear" (click)="clearKeyWord()">close</mat-icon>
+
+        <mat-form-field>
+          <mat-label>mot clef</mat-label>
+          <input matInput (keyup)="applyFilter($event)" [(ngModel)]="keyWord" />
+        </mat-form-field>
+
+      </section>
 
 
 

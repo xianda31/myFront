@@ -47,7 +47,15 @@ export class AdherentComponent implements OnInit {
     this.saveButtonDisabled = true;
   }
 
-  onCreate() {
+  onDelete() {
+
+    this.adhService.deleteById(this.memberForm.value);
+    this.creatingNewRecord = false;
+
+  }
+
+
+  onClear() {
     this.updateFormValues(WhiteMember);
     this.saveButtonDisabled = true;
     this.creatingNewRecord = true;

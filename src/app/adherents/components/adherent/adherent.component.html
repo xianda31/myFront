@@ -59,13 +59,14 @@
 
     <section>
       <div class="example-button-row">
-        <button mat-raised-button color="primary" (click)="onCreate()">Nouveau</button>
+        <button mat-raised-button color="primary" (click)="onClear()">Nouveau</button>
         <button [disabled]="saveButtonDisabled" mat-raised-button color="primary" (click)="onSave()">Sauvegarder</button>
-        {{creatingNewRecord}}
+        <button [disabled]="creatingNewRecord" mat-raised-button color="warn" (click)="onDelete()">Supprimer</button>
       </div>
+
     </section>
+    <app-adherents-list (selection)="onSelect($event)"></app-adherents-list>
 
   </mat-card-content>
 </mat-card>
 
-<app-adherents-list (selection)="onSelect($event)"></app-adherents-list>
