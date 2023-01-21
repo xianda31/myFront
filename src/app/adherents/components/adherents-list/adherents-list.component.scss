@@ -59,25 +59,25 @@
 // styles colonnes
 
 .mat-column-lastName {
- // width: 32px;
-  padding-right: 24px;
+  // width: 32px;
+  padding-right: 4px;
   text-align: left;
   font-size : smaller;
 }
 
 .mat-column-firstName {
  // width: 96px;
-  padding-left: 16px;
-  border-right: 1px solid currentColor;
+  padding-left: 6px;
 }
 
 .mat-column-license {
   font-style: italic;
   text-align: right;
   font-size : smaller;
+  border-right: 1px solid currentColor;
 }
 
-.mat-column-adh_key {
+.mat-column-_id {
   width: 32px;
   text-align: center;
   font-weight: bold;

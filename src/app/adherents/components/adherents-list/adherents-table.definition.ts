@@ -12,6 +12,11 @@ export const tableColumns = [
     cell: (element: Member) => `${element.firstName}`,
   },
   {
+    columnDef: 'license',
+    header: 'N° licence',
+    cell: (element: Member) => `${element.license}`,
+  },
+  {
     columnDef: 'email',
     header: 'mail',
     cell: (element: Member) => `${element.email}`,
@@ -21,11 +26,7 @@ export const tableColumns = [
     header: 'ville',
     cell: (element: Member) => `${element.city}`,
   },
-  {
-    columnDef: 'license',
-    header: 'N° licence',
-    cell: (element: Member) => `${element.license}`,
-  },
+
   {
     columnDef: '_id',
     header: 'key',

@@ -20,7 +20,7 @@ export class AdherentComponent implements OnInit {
   creatingNewRecord : boolean = true;
 
 
-  constructor(private frmbldr: FormBuilder,
+  constructor(private formbuilder: FormBuilder,
     private adhService: AdherentsService) { }
   memberForm !: FormGroup;
 
@@ -28,13 +28,12 @@ export class AdherentComponent implements OnInit {
     this.initForm();
     this.memberForm.valueChanges.subscribe(change => {
       this.saveButtonDisabled = false;
-      // console.log("changing", change);
     });
   }
 
-  filter(member : Member){
+  // filter(member : Member){
 
-  }
+  // }
 
   onSave() {
     if (this.creatingNewRecord) {
@@ -42,7 +41,6 @@ export class AdherentComponent implements OnInit {
     }else{
 
       this.adhService.updateById(this.memberForm.value);
-      // console.log("saving", this.memberForm.value)
     }
     this.saveButtonDisabled = true;
   }
@@ -61,7 +59,7 @@ export class AdherentComponent implements OnInit {
     this.creatingNewRecord = true;
   }
 
-  //  from-list-picking handler
+  //  from-list-picking handler (adherents-list.ts)
   onSelect(member: Member) {
     this.updateFormValues(member);
     this.saveButtonDisabled = true;
@@ -74,20 +72,31 @@ export class AdherentComponent implements OnInit {
 
 
   initForm() {
-    this.memberForm = this.frmbldr.group({
+    this.memberForm = this.formbuilder.group({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
+      license: new FormControl(''),
       email: new FormControl(''),
       phone: new FormControl(''),
       address: new FormControl(''),
       city: new FormControl(''),
       zip: new FormControl(''),
-      license: new FormControl(''),
-      adh_key:  new FormControl(''),    // non visible ; pour mappage memberForm -> Member
-      _id: new FormControl(''),    // non visible ; pour mappage memberForm -> Member
+      _id: new FormControl(''),    // non modifiable ; pour mappage memberForm -> Member
     });
-
   }
+
+
+  changeControlTextToUpperCase(field : string) {
+      let obj =  this.memberForm.controls[field].value.toUpperCase();
+      this.memberForm.controls[field].patchValue(obj);
+    }
+
+    changeControlTextFirstLetterToUpperCase(field : string) {
+      let str = this.memberForm.controls[field].value;
+      str = (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
+        return $1.toUpperCase()});
+      this.memberForm.controls[field].patchValue(str);
+    }
 }
 
 
