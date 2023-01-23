@@ -1,10 +1,16 @@
 mat-card{
   width : 100%;
 // margin: 20px;
-
 }
 
+mat-form-field{
+  padding-left: 4px !important ;
+   width: 18% !important ;
+}
 
+// .wider {
+//   width: 30% !important
+// }
 
 .example-label {
   display: table-cell;

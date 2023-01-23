@@ -3,7 +3,7 @@
     <h1>Editer</h1>
 
 
-    <form [formGroup]="memberForm" >
+    <form [formGroup]="memberForm">
 
 
       <div>
@@ -14,7 +14,8 @@
 
         <mat-form-field appearance="fill">
           <mat-label>prénom</mat-label>
-          <input matInput type="text" formControlName="firstName" (input)="changeControlTextFirstLetterToUpperCase('firstName')">
+          <input matInput type="text" formControlName="firstName"
+            (input)="changeControlTextFirstLetterToUpperCase('firstName')">
         </mat-form-field>
 
         <mat-form-field appearance="fill">
@@ -24,24 +25,25 @@
       </div>
 
       <div>
-        <mat-form-field appearance="fill">
-          <mat-label>email</mat-label>
-          <input matInput type="email" formControlName="email">
-        </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>téléphone</mat-label>
-          <input matInput type="phone" formControlName="phone">
+          <input matInput type="phone" formControlName="tel">
+        </mat-form-field>
+
+        <mat-form-field class="wider" appearance="fill">
+          <mat-label>email</mat-label>
+          <input matInput type="email" formControlName="mail">
         </mat-form-field>
       </div>
 
+      <div>
 
-      <mat-form-field style="width:100%" appearance="fill">
+      <mat-form-field class="wider" appearance="fill">
         <mat-label>adresse</mat-label>
         <input matInput type="text" formControlName="address">
       </mat-form-field>
 
-      <div>
         <mat-form-field appearance="fill">
           <mat-label>CP</mat-label>
           <input matInput type="text" formControlName="zip">
@@ -60,13 +62,14 @@
     <section>
       <div class="example-button-row">
         <button mat-raised-button color="primary" (click)="onClear()">Nouveau</button>
-        <button [disabled]="saveButtonDisabled" mat-raised-button color="primary" (click)="onSave()">Sauvegarder</button>
+        <button [disabled]="saveButtonDisabled" mat-raised-button color="primary"
+          (click)="onSave()">Sauvegarder</button>
         <button [disabled]="creatingNewRecord" mat-raised-button color="warn" (click)="onDelete()">Supprimer</button>
       </div>
 
     </section>
-    <app-adherents-list (selection)="onSelect($event)"></app-adherents-list>
+    <app-adherents-list (selection)="onSelect($event)"
+                         keySearch="{{editingLastName}}"></app-adherents-list>
 
   </mat-card-content>
 </mat-card>
-

@@ -1,10 +1,9 @@
 export class Member {
   _id !: number;
-  adh_key !: number;
   firstName !: string;
   lastName !: string;
-  email !: string ;
-  phone ?: string;
+  mail !: string ;
+  tel ?: string;
   address ?: string;
   city !: string;
   zip !: string;
@@ -14,11 +13,10 @@ export class Member {
 
 export const WhiteMember ={
   _id : 0,
-  adh_key : 0,
   firstName : '',
   lastName : '',
-  email :''  ,
-  phone :'' ,
+  mail :''  ,
+  tel :'' ,
   address :'' ,
   city : '',
   zip : '',

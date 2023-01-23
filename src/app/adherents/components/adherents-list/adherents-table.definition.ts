@@ -17,9 +17,9 @@ export const tableColumns = [
     cell: (element: Member) => `${element.license}`,
   },
   {
-    columnDef: 'email',
+    columnDef: 'mail',
     header: 'mail',
-    cell: (element: Member) => `${element.email}`,
+    cell: (element: Member) => `${element.mail}`,
   },
   {
     columnDef: 'city',
@@ -28,9 +28,9 @@ export const tableColumns = [
   },
 
   {
-    columnDef: '_id',
-    header: 'key',
-    cell: (element: Member) => `${element._id}`,
+    columnDef: 'tel',
+    header: 'tel',
+    cell: (element: Member) => `${element.tel}`,
   },
   {
     columnDef: 'icon',

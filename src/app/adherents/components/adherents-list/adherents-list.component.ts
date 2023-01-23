@@ -1,4 +1,4 @@
-import { Component,  EventEmitter,  OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import { AdherentsService } from 'src/app/core/mongo_services/adherents.service';
 import { Member } from '../../member.interface';
@@ -11,9 +11,10 @@ import { tableColumns } from './adherents-table.definition';
 })
 
 
-export class AdherentsListComponent implements OnInit {
+export class AdherentsListComponent implements OnInit,OnChanges {
 
   @Output() selection: EventEmitter<Member> = new EventEmitter<Member>();
+  @Input() keySearch  ='';
 
   columns = tableColumns ;
   displayedColumns = this.columns.map(c => c.columnDef);
@@ -25,6 +26,11 @@ export class AdherentsListComponent implements OnInit {
 
 
   constructor (private adhService : AdherentsService) {}
+
+  ngOnChanges(changes:SimpleChanges) {
+    this.keyWord= changes['keySearch'].currentValue;
+    this.setFilter(this.keyWord);
+  }
   ngOnInit(): void {
     this.clearKeyWord() ;
     this.adhService.adherents$.subscribe(
@@ -32,7 +38,7 @@ export class AdherentsListComponent implements OnInit {
         this.dataSource = new MatTableDataSource<Member>(adh);
         this.adherentsTotalNumber = adh.length;
         this.adherentsSelectedNumber = adh.length;
-        console.log("%d cards",adh.length);
+        // console.log("%d cards",adh.length);
         this.setFilter(this.keyWord);
       }
 

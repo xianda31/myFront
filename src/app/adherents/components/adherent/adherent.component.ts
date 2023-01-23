@@ -18,6 +18,7 @@ export class AdherentComponent implements OnInit {
 
   saveButtonDisabled: boolean = true;
   creatingNewRecord : boolean = true;
+  editingLastName : string ="";
 
 
   constructor(private formbuilder: FormBuilder,
@@ -29,6 +30,8 @@ export class AdherentComponent implements OnInit {
     this.memberForm.valueChanges.subscribe(change => {
       this.saveButtonDisabled = false;
     });
+    this.memberForm.controls['lastName'].valueChanges.subscribe(change =>
+      this.editingLastName = change)
   }
 
   // filter(member : Member){
@@ -76,12 +79,11 @@ export class AdherentComponent implements OnInit {
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       license: new FormControl(''),
-      email: new FormControl(''),
-      phone: new FormControl(''),
+      mail: new FormControl(''),
+      tel: new FormControl(''),
       address: new FormControl(''),
       city: new FormControl(''),
       zip: new FormControl(''),
-      _id: new FormControl(''),    // non modifiable ; pour mappage memberForm -> Member
     });
   }
 
