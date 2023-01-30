@@ -31,7 +31,7 @@ export class AdherentsService {
   // CREATE
 
   createAdherent(member: Member)  {
-    console.log("posting @\/adherent",member)
+  //  console.log("posting @\/adherent",member)
 
     this.http.post<Member>(`${api}/adherent`, member).pipe (
       catchError(this.handleError)
@@ -65,7 +65,8 @@ export class AdherentsService {
   updateById(member: Member) {
     const foundIndex = this._adherents.findIndex((item) => item._id === member._id  ) ;
     if (foundIndex > -1) {
-      this._adherents[foundIndex] = member;
+      this._adherents[foundIndex] = this._adherents[0];    // swap with 1rst element to show it @first line
+      this._adherents[0] = member;
       this._adherents$.next(this._adherents);
 
       this.http.put<Member>(`${api}/adherent/${member._id}`,member).pipe(

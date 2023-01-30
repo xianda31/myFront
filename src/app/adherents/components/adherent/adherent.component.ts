@@ -16,10 +16,18 @@ import { Member, WhiteMember } from '../../member.interface';
 //
 export class AdherentComponent implements OnInit {
 
-  saveButtonDisabled: boolean = true;
+  saveButtonEnabled: boolean = false;
   creatingNewRecord : boolean = true;
-  editingLastName : string ="";
+  recordCleared : boolean = true;
+  deletionRecoverable : boolean = false;
+  undoProposed : boolean = false;
+  spinning : boolean = false;
 
+ // modifyButtonEnabled : boolean = false;
+
+  lastNameKeySearch : string ="";
+  firstNameKeySearch : string ="";
+  keySearch : string = "";
 
   constructor(private formbuilder: FormBuilder,
     private adhService: AdherentsService) { }
@@ -28,44 +36,58 @@ export class AdherentComponent implements OnInit {
   ngOnInit() {
     this.initForm();
     this.memberForm.valueChanges.subscribe(change => {
-      this.saveButtonDisabled = false;
+       if (this.recordCleared) {
+          this.recordCleared = false;
+
+       } else {
+          this.saveButtonEnabled = true;
+       };
+
     });
-    this.memberForm.controls['lastName'].valueChanges.subscribe(change =>
-      this.editingLastName = change)
+
+    this.memberForm.controls['lastName'].valueChanges.subscribe(change => {
+      this.lastNameKeySearch = change ;
+      this.keySearch= this.lastNameKeySearch + '$' + this.firstNameKeySearch;
+    });
+      this.memberForm.controls['firstName'].valueChanges.subscribe(change=>{
+        this.firstNameKeySearch = change ;
+        this.keySearch= this.lastNameKeySearch + '$' + this.firstNameKeySearch;
+       } );
+
   }
-
-  // filter(member : Member){
-
-  // }
-
   onSave() {
     if (this.creatingNewRecord) {
       this.adhService.createAdherent(this.memberForm.value)
     }else{
-
       this.adhService.updateById(this.memberForm.value);
     }
-    this.saveButtonDisabled = true;
+   this.resetForm();
   }
 
   onDelete() {
-
     this.adhService.deleteById(this.memberForm.value);
-    this.creatingNewRecord = false;
-
+    this.undoProposed = true ;
+    this.deletionRecoverable = true;
+    this.saveButtonEnabled = false;
+    this.memberForm.disable();    // non modifiable le temps d'un undo
   }
 
-
+  onUndo() {
+    this.adhService.createAdherent(this.memberForm.value);
+    this.spinning=true;
+    setTimeout(()=> {
+      this.spinning=false;
+      this.resetForm();
+    },1000);
+  }
   onClear() {
-    this.updateFormValues(WhiteMember);
-    this.saveButtonDisabled = true;
-    this.creatingNewRecord = true;
+    this.resetForm();
   }
 
   //  from-list-picking handler (adherents-list.ts)
   onSelect(member: Member) {
     this.updateFormValues(member);
-    this.saveButtonDisabled = true;
+    this.saveButtonEnabled = false;
     this.creatingNewRecord = false;
   }
 
@@ -73,7 +95,17 @@ export class AdherentComponent implements OnInit {
     this.memberForm.patchValue(member,{emitEvent:false});  // pour ne pas que valueChanges claque ...
   }
 
+  resetForm() {
+    this.recordCleared = true;
+    this.updateFormValues(WhiteMember);
+    this.creatingNewRecord = true;
+    this.keySearch="";    // reset filtre recherche
+    this.saveButtonEnabled = false;
+    this.deletionRecoverable = false;
+    this.undoProposed = false ;
+    this.memberForm.enable();
 
+  }
   initForm() {
     this.memberForm = this.formbuilder.group({
       firstName: new FormControl(''),
@@ -84,7 +116,10 @@ export class AdherentComponent implements OnInit {
       address: new FormControl(''),
       city: new FormControl(''),
       zip: new FormControl(''),
+      _id: new FormControl(''),
+
     });
+    this.resetForm();
   }
 
 

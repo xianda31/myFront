@@ -1,4 +1,5 @@
 export class Member {
+  [x: string]: any;
   _id !: number;
   firstName !: string;
   lastName !: string;

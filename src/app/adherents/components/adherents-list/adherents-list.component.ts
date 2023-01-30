@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { AdherentsService } from 'src/app/core/mongo_services/adherents.service';
 import { Member } from '../../member.interface';
 import { tableColumns } from './adherents-table.definition';
+import { SortPipe } from 'src/app/shared/pipes/sortPipe';
 
 @Component({
   selector: 'app-adherents-list',
@@ -25,20 +26,28 @@ export class AdherentsListComponent implements OnInit,OnChanges {
   adherentsSelectedNumber !: number;
 
 
-  constructor (private adhService : AdherentsService) {}
+  constructor (private adhService : AdherentsService,
+                private sortPipe : SortPipe) { }
 
-  ngOnChanges(changes:SimpleChanges) {
-    this.keyWord= changes['keySearch'].currentValue;
-    this.setFilter(this.keyWord);
-  }
+ ngOnChanges(changes:SimpleChanges) {
+      this.keyWord= changes['keySearch'].currentValue;
+      this.setFilter(this.keyWord);
+                }
   ngOnInit(): void {
-    this.clearKeyWord() ;
+
+        this.clearKeyWord() ;
+    this.dataSource.filterPredicate = (data: Member, filter: string) => {
+      const filterArray = filter.split('$');
+      const lastName = filterArray[0];
+      const firstName = filterArray[1];
+      return data.lastName.toLowerCase().includes(lastName) && data.firstName.toLowerCase().includes(firstName);  } ;
+
     this.adhService.adherents$.subscribe(
       (adh:Member[])=> {
-        this.dataSource = new MatTableDataSource<Member>(adh);
-        this.adherentsTotalNumber = adh.length;
-        this.adherentsSelectedNumber = adh.length;
-        // console.log("%d cards",adh.length);
+        const sortedAdh = this.sortPipe.transform(adh, "asc", "lastName");
+        this.dataSource.data =sortedAdh;
+        this.adherentsTotalNumber = sortedAdh.length;
+        this.adherentsSelectedNumber = sortedAdh.length;
         this.setFilter(this.keyWord);
       }
 

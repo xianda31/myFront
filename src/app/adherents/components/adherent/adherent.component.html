@@ -1,11 +1,25 @@
 <mat-card>
-  <mat-card-content>
-    <h1>Editer</h1>
+  <mat-card-header>
+    <span  *ngIf="creatingNewRecord; then createBlock else modBlock">   </span>
+  </mat-card-header>
 
+  <ng-template #createBlock >
+    <ng-container *ngTemplateOutlet="clearBlock"></ng-container>
+      Création d'une fiche
+    </ng-template>
+    <ng-template #modBlock>
+        <ng-container *ngTemplateOutlet="clearBlock"></ng-container>
+        Modification d'une fiche
+    </ng-template>
 
+    <ng-template #clearBlock>
+      <button  mat-icon-button color="primary" (click)="onClear()">
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </ng-template>
+
+    <mat-card-content>
     <form [formGroup]="memberForm">
-
-
       <div>
         <mat-form-field appearance="fill">
           <mat-label>nom</mat-label>
@@ -23,7 +37,6 @@
           <input matInput type="text" formControlName="license">
         </mat-form-field>
       </div>
-
       <div>
 
         <mat-form-field appearance="fill">
@@ -57,19 +70,29 @@
 
     </form>
 
-    <mat-divider></mat-divider>
 
-    <section>
+    <mat-card-actions>
+      <section >
       <div class="example-button-row">
-        <button mat-raised-button color="primary" (click)="onClear()">Nouveau</button>
-        <button [disabled]="saveButtonDisabled" mat-raised-button color="primary"
-          (click)="onSave()">Sauvegarder</button>
-        <button [disabled]="creatingNewRecord" mat-raised-button color="warn" (click)="onDelete()">Supprimer</button>
-      </div>
+          <button [disabled]="!saveButtonEnabled || deletionRecoverable " mat-raised-button color="primary"  (click)="onSave()">Sauvegarder</button>
+          <button [disabled]="creatingNewRecord  || deletionRecoverable" mat-raised-button color="warn" (click)="onDelete()">Supprimer</button>
+          <button *ngIf="undoProposed" mat-raised-button color="primary" (click)="onUndo()"> Restaurer </button>
+          <mat-spinner diameter="20" *ngIf="spinning">  </mat-spinner>
+        </div>
+      </section>
+<!--
+     'recordCleared=' {{recordCleared}}
+     <br>
+     'deletionRecoverable=' {{deletionRecoverable}}
+     <br>
+      'creatingNewRecord='{{creatingNewRecord}} -->
 
-    </section>
+    </mat-card-actions>
+
+      <!-- <mat-divider></mat-divider> -->
+
     <app-adherents-list (selection)="onSelect($event)"
-                         keySearch="{{editingLastName}}"></app-adherents-list>
+                         keySearch="{{keySearch}}"></app-adherents-list>
 
   </mat-card-content>
 </mat-card>

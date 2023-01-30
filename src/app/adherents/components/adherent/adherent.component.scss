@@ -2,15 +2,16 @@ mat-card{
   width : 100%;
 // margin: 20px;
 }
-
+mat-card-header{
+  display: flex;
+  // height: 48px;
+  align-items: center;
+  font-size: x-large;
+}
 mat-form-field{
   padding-left: 4px !important ;
    width: 18% !important ;
 }
-
-// .wider {
-//   width: 30% !important
-// }
 
 .example-label {
   display: table-cell;
@@ -20,13 +21,17 @@ mat-form-field{
 }
 
 .example-button-row {
-  display: table-cell;
+  display: flex;
   max-width: 600px;
+  align-content: center;
 }
-
-.example-button-row .mat-mdc-button-base {
+section {
+  display: table;
+}
+.example-button-row .mat-mdc-button-base  {
   margin: 8px 8px 8px 0;
 }
+
 
 .example-flex-container {
   display: flex;

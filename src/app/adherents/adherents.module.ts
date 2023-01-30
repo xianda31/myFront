@@ -10,7 +10,7 @@ import { AdherentComponent } from './components/adherent/adherent.component';
 @NgModule({
   declarations: [
     AdherentsListComponent,
-    AdherentComponent
+    AdherentComponent,
   ],
   imports: [
     CommonModule,

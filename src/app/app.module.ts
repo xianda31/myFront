@@ -7,6 +7,7 @@ import { MaterialsModule } from './shared/materials.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { SortPipe } from './shared/pipes/sortPipe';
 
 
 
@@ -14,7 +15,9 @@ import { SidenavComponent } from './layout/sidenav/sidenav.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    SortPipe
+
   ],
   imports: [
     BrowserModule,
@@ -22,9 +25,8 @@ import { SidenavComponent } from './layout/sidenav/sidenav.component';
     AppRoutingModule,
     MaterialsModule,
     HttpClientModule
-
   ],
-  providers: [],
+  providers: [SortPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
