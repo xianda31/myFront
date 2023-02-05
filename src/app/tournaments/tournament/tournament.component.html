@@ -1,0 +1,14 @@
+
+<!-- <mat-card> -->
+
+  <ng-container   *ngFor="let pair of namedPairs ; let team = index">
+    <mat-card>
+      <mat-card-content>
+        <app-player player={{pair[0]}}>   </app-player>
+        <app-player player={{pair[1]}}>   </app-player>
+      </mat-card-content>
+    </mat-card>
+
+  </ng-container>
+<!-- </mat-card> -->
+

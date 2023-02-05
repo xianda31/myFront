@@ -1,0 +1,14 @@
+
+<mat-card >
+
+  <!-- <section class="example-section"> -->
+      <mat-checkbox  [(ngModel)]="checked">{{player}}</mat-checkbox>
+    <div>
+      <mat-radio-group [disabled]="!checked" [(ngModel)]="labelPosition">
+        <mat-radio-button  value="carte">carte</mat-radio-button>
+        <mat-radio-button value="espèces">espèces</mat-radio-button>
+      </mat-radio-group>
+
+    </div>
+  <!-- </section> -->
+</mat-card>

@@ -1,6 +1,6 @@
 import { Member } from '../../member.interface';
 
-export const tableColumns = [
+export const memberTableColumns = [
   {
     columnDef: 'lastName',
     header: 'Nom',

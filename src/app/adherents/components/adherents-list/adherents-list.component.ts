@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output, Input, OnChanges, SimpleChanges } from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
-import { AdherentsService } from 'src/app/core/mongo_services/adherents.service';
+import { AdherentsService } from 'src/app/shared/adherents.service';
 import { Member } from '../../member.interface';
-import { tableColumns } from './adherents-table.definition';
+import { memberTableColumns } from './adherents-table.definition';
 import { SortPipe } from 'src/app/shared/pipes/sortPipe';
 
 @Component({
@@ -17,7 +17,7 @@ export class AdherentsListComponent implements OnInit,OnChanges {
   @Output() selection: EventEmitter<Member> = new EventEmitter<Member>();
   @Input() keySearch  ='';
 
-  columns = tableColumns ;
+  columns = memberTableColumns ;
   displayedColumns = this.columns.map(c => c.columnDef);
   dataSource = new MatTableDataSource<Member>([]) ;
 

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdherentsRoutingModule } from './adherents-routing.module';
@@ -18,4 +18,4 @@ import { AdherentComponent } from './components/adherent/adherent.component';
     MaterialsModule
   ]
 })
-export class AdherentsModule { }
+export class AdherentsModule {}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdherentsService } from './core/mongo_services/adherents.service';
+import { AdherentsService } from './shared/adherents.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,9 +13,9 @@ export class AppComponent implements OnInit{
   constructor (private adhService : AdherentsService) {}
   ngOnInit(): void {
 
-this.adhService.getAdherentsFromServer();
+ this.adhService.getAdherentsFromServer();
 
-this.adhService.loaded$.subscribe ((n : number)=> {this.adherentsCount = n});
+// this.adhService.loaded$.subscribe ((n : number)=> {this.adherentsCount = n});
 
 
 };

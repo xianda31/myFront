@@ -16,7 +16,7 @@ import { SortPipe } from './shared/pipes/sortPipe';
   declarations: [
     AppComponent,
     SidenavComponent,
-    SortPipe
+    SortPipe,
 
   ],
   imports: [

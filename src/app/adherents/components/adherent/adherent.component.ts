@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { AdherentsService } from 'src/app/core/mongo_services/adherents.service';
+import { AdherentsService } from 'src/app/shared/adherents.service';
 import { Member, WhiteMember } from '../../member.interface';
 
 @Component({
