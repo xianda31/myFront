@@ -1,0 +1,23 @@
+<form [formGroup]="teamForm">
+  <section>
+
+    <div class="example-label">
+      ajout nouvelle équipe :
+    </div>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Joueur 1</mat-label>
+      <input matInput formControlName="lastName1" (input)="changeControlTextToUpperCase('lastName1')">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Joueur 2</mat-label>
+      <input matInput formControlName="lastName2" (input)="changeControlTextToUpperCase('lastName2')">
+    </mat-form-field>
+
+    <button mat-icon-button color="primary">
+      <mat-icon>save</mat-icon>
+    </button>
+</section>
+</form>
