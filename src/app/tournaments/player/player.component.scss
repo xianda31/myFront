@@ -1,10 +1,18 @@
-.example-section {
-  display: flex;
-  align-content: center;
-  align-items: center;
-  height: 60px;
-}
+
 mat-card {
-    width : 300px;
+    width : 400px;
+    height:min-content;
    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   padding : 0 !important ;
+
+}
+.flex-around{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.flex-between{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

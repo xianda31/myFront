@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @Component({
   selector: 'app-player',
@@ -8,8 +9,14 @@ import { Component, Input } from '@angular/core';
 export class PlayerComponent {
   @Input() player : string = "?";
 
-  checked : boolean = false;
-  labelPosition: 'carte' | 'espèces' = 'carte';
+  byCard : boolean = true;
+  labelPosition:  '3€' | '4€'  | '0€' = '3€';
+  playerPresent : boolean = false;
 
+
+onPlayerClick() {
+this.playerPresent = !this.playerPresent;
+
+}
 
 }
