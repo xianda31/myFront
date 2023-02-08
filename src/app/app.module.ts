@@ -6,7 +6,7 @@ import { MaterialsModule } from './shared/materials.module';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { SidenavComponent } from './layout/sidenav/sidenav.component';
+import { ToolbarComponent } from './layout/toolbar/toolbar.component';
 import { SortPipe } from './shared/pipes/sortPipe';
 
 
@@ -15,7 +15,7 @@ import { SortPipe } from './shared/pipes/sortPipe';
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent,
+    ToolbarComponent,
     SortPipe,
 
   ],

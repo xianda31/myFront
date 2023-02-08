@@ -3,8 +3,25 @@ mat-card-content {
   justify-content:center;
   align-content: center;
   align-items: center;
-  gap : 10px;
+  gap : 8px;
 
   // max-height: 40px !important;
 
+}
+.container-flex {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.buttons{
+  display: flex;
+  justify-content:flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap : 10px;
+}
+.menu{
+  height: 130px;
+  gap : 8px;
 }

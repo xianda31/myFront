@@ -1,7 +1,20 @@
 
-<!-- <mat-card> -->
+<mat-toolbar class="menu">
 
-  <ng-container   *ngFor="let pair of namedPairs ; let team = index">
+  <!-- <app-side>  </app-side> -->
+
+    <!-- <button mat-raised-button color="basic">ajouter une équipe</button>
+
+    <button mat-raised-button color="basic">enregistrer</button>
+ -->
+
+<app-newpair></app-newpair>
+
+</mat-toolbar>
+
+<div class ="container-flex">
+
+  <ng-container class ="container-flex"  *ngFor="let pair of namedPairs ; let team = index">
     <mat-card>
       <mat-card-content>
         <app-player player={{pair[0]}}>   </app-player>
@@ -10,5 +23,5 @@
     </mat-card>
 
   </ng-container>
-<!-- </mat-card> -->
 
+</div>

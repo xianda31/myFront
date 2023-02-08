@@ -19,7 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatBadgeModule} from '@angular/material/badge' ;
-
+import {MatExpansionModule} from '@angular/material/expansion';
 
 
 
@@ -46,6 +46,7 @@ import {MatBadgeModule} from '@angular/material/badge' ;
     MatPaginatorModule,
     MatButtonToggleModule,
     MatBadgeModule,
+    MatExpansionModule,
 
 
   ]

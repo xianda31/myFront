@@ -3,9 +3,7 @@ import { Member } from 'src/app/adherents/member.interface';
 import { AdherentsService } from 'src/app/shared/adherents.service';
 import { TournamentsService } from 'src/app/shared/tournaments.service';
 import { BehaviorSubject, concatMap, take } from 'rxjs';
-// import { tournamentTableColumns } from './tournament-table.definition';
-import { MatTableDataSource } from '@angular/material/table';
-import { Team } from './tournament.interface';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 
 type LicencePair = string[];
 
@@ -22,19 +20,18 @@ export class TournamentComponent implements OnInit {
   adherentList !: Member[];
   tournament !: LicencePair[];
 
-  // pairs: Array<number[]> = [];
+
+
   namedPairs : Array<LicencePair> = [];
   httpLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  // columns = tournamentTableColumns ;
-  // displayedColumns = this.columns.map(c => c.columnDef);
-  // dataSource = new MatTableDataSource<Team>([]) ;
 
   constructor(private adhService: AdherentsService,
               private tournmntService: TournamentsService) { }
 
 
   ngOnInit(): void {
+
 
     this.adhService.adherents$
       .subscribe(

@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss']
+  selector: 'app-toolbar',
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.scss']
 })
 
 
-export class SidenavComponent {
+export class ToolbarComponent {
 SidenavOpened : boolean=true;
 
 toggle() {this.SidenavOpened =!this.SidenavOpened}
