@@ -1,24 +1,41 @@
-
 <mat-toolbar class="menu">
+  <section>
 
-  <!-- <app-side>  </app-side> -->
+    <div class="example-label">
+      ajout nouvelle équipe :
+    </div>
 
-    <!-- <button mat-raised-button color="basic">ajouter une équipe</button>
+    <form class="inputs"   [formGroup]="teamForm">
 
-    <button mat-raised-button color="basic">enregistrer</button>
- -->
+      <mat-form-field appearance="fill">
+        <mat-label>Licence 1</mat-label>
+        <input matInput formControlName="license1">
+      </mat-form-field>
 
-<app-newpair></app-newpair>
+      <mat-form-field appearance="fill">
+        <mat-label>Licence 2</mat-label>
+        <input matInput formControlName="license2">
+      </mat-form-field>
+
+      <button mat-raised-button class="submit-btn"
+                    type="submit"
+                    color="primary"
+                     [disabled]="!teamForm.valid"
+                    (click)="onSubmitPair()">
+        ok
+      </button>
+    </form>
+  </section>
 
 </mat-toolbar>
 
-<div class ="container-flex">
+<div class="container-flex">
 
-  <ng-container class ="container-flex"  *ngFor="let pair of namedPairs ; let team = index">
+  <ng-container class="container-flex" *ngFor="let pair of namedPairs ; let team = index">
     <mat-card>
       <mat-card-content>
-        <app-player player={{pair[0]}}>   </app-player>
-        <app-player player={{pair[1]}}>   </app-player>
+        <app-player player={{pair[0]}}> </app-player>
+        <app-player player={{pair[1]}}> </app-player>
       </mat-card-content>
     </mat-card>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdherentsService } from 'src/app/shared/adherents.service';
 
 @Component({
@@ -17,9 +17,13 @@ export class NewpairComponent implements OnInit{
 
     ngOnInit(): void {
     this.teamForm = this.formbuilder.group({
-      lastName1: new FormControl(''),
-      lastName2: new FormControl(''),
+      license1: new FormControl('',Validators.minLength(6)),
+      license2: new FormControl('',Validators.minLength(6)),
     });
+
+    this.teamForm.valueChanges.subscribe(
+     ((d)=>  console.log("got :",d))
+    );
 
   }
 
