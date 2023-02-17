@@ -5,7 +5,7 @@ import { TournamentComponent } from './tournament/tournament.component';
 import { TournamentsRoutingModule } from './tournaments-routing.module';
 import { MaterialsModule } from '../shared/materials.module';
 import { PlayerComponent } from './player/player.component';
-import { NewpairComponent } from './newpair/newpair.component';
+import { ArticlesComponent } from './sales/articles/articles.component';
 
 
 
@@ -13,7 +13,7 @@ import { NewpairComponent } from './newpair/newpair.component';
   declarations: [
     TournamentComponent,
     PlayerComponent,
-    NewpairComponent,
+    ArticlesComponent,
   ],
   imports: [
     CommonModule,

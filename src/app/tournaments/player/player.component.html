@@ -1,29 +1,35 @@
 
 <mat-card [ngStyle]="{'background-color':playerPresent ? 'rgb(39, 220, 65)':'white'} ">
-  <mat-card-content>
+  <mat-card-title>
 
-    <mat-card-title class="flex-around">
+    <!-- <mat-card-title class="flex-around"> -->
 
-      <button mat-button color=primary (click)="onPlayerClick()"> {{player}}
-      </button>
-      <mat-checkbox  [disabled]="!playerPresent"
-                     color=primary
-                     matBadge="4"
-                     [matBadgeHidden]="!playerPresent || !byCard"
-                     [(ngModel)]="byCard">carte</mat-checkbox>
-    </mat-card-title>
+      <!-- <mat-checkbox  [disabled]="!playerPresent"
+        color=primary
+        matBadge="4"
+        [matBadgeHidden]="!playerPresent || !byCard"
+        [(ngModel)]="byCard">carte</mat-checkbox> -->
+        <!-- </mat-card-title> -->
 
-  </mat-card-content>
+      </mat-card-title>
+      <mat-card-header>
+
+        <div class="avatar"> {{getInitials(player.firstName,player.lastName)}}</div>
+        <!-- <img mat-card-avatar src="../../../assets/images/papou.jpg" alt="photo"> -->
+        <button mat-button color=primary (click)="onPlayerClick()">
+          {{player.firstName}} {{player.lastName}}
+        </button>
+  </mat-card-header>
     <!-- <section class="example-section"> -->
       <!-- <mat-checkbox  [(ngModel)]="checked"></mat-checkbox> -->
-      <mat-card-actions class="flex-around">
+      <!-- <mat-card-actions class="flex-around">
       <mat-radio-group   color=primary [disabled]="byCard"   [(ngModel)]="labelPosition">
         <mat-radio-button value="3€">3€</mat-radio-button>
         <mat-radio-button value="4€">4€</mat-radio-button>
         <mat-radio-button value="0€">gratuit</mat-radio-button>
       </mat-radio-group>
 
-      </mat-card-actions>
+      </mat-card-actions> -->
     <!-- </section> -->
 
 

@@ -4,18 +4,11 @@ import { AdherentsService } from 'src/app/shared/adherents.service';
 import { TournamentsService } from 'src/app/shared/tournaments.service';
 import { BehaviorSubject, concatMap, take } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Player, Team } from './tournament.interface';
 
 type LicencePair = string[];
 
-class LicenseValidator {static validLicense(fc: FormControl){
-  if(fc.value === "543210" ){
-    console.log("yop");
-    return ({validLicense: true});
-  } else {
-    console.log("nop");
-    return (null);
-  }
-}}
+
 
 @Component({
   selector: 'app-tournament',
@@ -24,18 +17,15 @@ class LicenseValidator {static validLicense(fc: FormControl){
 })
 
 
-
-
 export class TournamentComponent implements OnInit {
 
   adherentList !: Member[];
-  tournament !: LicencePair[];
+  teams !: Team[];
+  toto : Player = {firstName: 'toto', lastName:'titi'};
 
-
-
-  namedPairs : Array<LicencePair> = [];
   httpLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   teamForm !: FormGroup;
+  labelPosition: Array<'before' | 'after'>  = ['after'];
 
 
 
@@ -64,8 +54,6 @@ export class TournamentComponent implements OnInit {
     });
 
 
-
-
     this.adhService.adherents$
       .subscribe(
         (adh: Member[]) => {
@@ -78,36 +66,43 @@ export class TournamentComponent implements OnInit {
         // console.log('get completed !');
         this.tournmntService.getTournamentFromServer()
           .subscribe((data: LicencePair[]) => {
-            this.tournament = data;
-            this.getTournamentPairs()
+            // this.getteamsPairs()
+            this.teams = data.map((license_pair) => ({
+                playerA: this.findPlayer(license_pair[0]),
+                playerB: this.findPlayer(license_pair[1])
+
+            }));
           });
       }
     });
 
   }
 
-  getTournamentPairs() {
-    this.tournament.forEach((data: LicencePair) => {
-      this.namedPairs.push([this.findMemberName(data[0]), this.findMemberName(data[1])]);
-    })
-  }
+
   onSubmitPair() {
     console.log(this.teamForm.value)
-    this.namedPairs.push([this.findMemberName(this.teamForm.controls['license1'].value),
-                         this.findMemberName(this.teamForm.controls['license2'].value)]);
 
+    this.teams.push({
+      playerA : this.findPlayer(this.teamForm.controls['license1'].value),
+      playerB : this.findPlayer(this.teamForm.controls['license2'].value)
+    });
   }
 
   findMember(license: string): number {
     return this.adherentList.findIndex(x => x.license === +license);
 
   }
-  findMemberName(license: string): string {
+
+  findPlayer(license: string): Player {
 
     var index = this.adherentList.findIndex(x => x.license === +license);
     // console.log(license,index);
-    if (index != -1) return (this.adherentList[index].firstName + " " + this.adherentList[index].lastName) ;
-   return ( "invité (" + license  + ")");
+    if (index != -1) return ({
+        firstName : this.adherentList[index].firstName,
+        lastName : this.adherentList[index].lastName} ) ;
+   return ({
+    firstName : "licencié(e)",
+    lastName :  "" + license  });
 
   }
 

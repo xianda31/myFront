@@ -1,44 +1,66 @@
-<mat-toolbar class="menu">
-  <section>
+<!-- <mat-toolbar class="menu"> -->
 
-    <div class="example-label">
-      ajout nouvelle équipe :
-    </div>
 
-    <form class="inputs"   [formGroup]="teamForm">
+<!-- </mat-toolbar> -->
 
-      <mat-form-field appearance="fill">
-        <mat-label>Licence 1</mat-label>
-        <input matInput formControlName="license1">
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Licence 2</mat-label>
-        <input matInput formControlName="license2">
-      </mat-form-field>
-
-      <button mat-raised-button class="submit-btn"
-                    type="submit"
-                    color="primary"
-                     [disabled]="!teamForm.valid"
-                    (click)="onSubmitPair()">
-        ok
-      </button>
-    </form>
-  </section>
-
-</mat-toolbar>
+<div class="label">
+ <h2>
+   équipes inscrites :
+ </h2>
+</div>
 
 <div class="container-flex">
 
-  <ng-container class="container-flex" *ngFor="let pair of namedPairs ; let team = index">
+  <ng-container class="container-flex" *ngFor="let team of teams ">
     <mat-card>
       <mat-card-content>
-        <app-player player={{pair[0]}}> </app-player>
-        <app-player player={{pair[1]}}> </app-player>
+        <app-player [player] =team.playerA> </app-player>
+        <app-player [player] =team.playerB> </app-player>
       </mat-card-content>
     </mat-card>
 
   </ng-container>
 
+  <!-- <br> -->
+
+
+    <div class="label2">
+      <h3>
+        ajout autre équipe :
+      </h3>
+      <form class="inputs"   [formGroup]="teamForm">
+
+        <mat-form-field appearance="fill">
+          <mat-label>Licence 1</mat-label>
+          <input matInput formControlName="license1">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Licence 2</mat-label>
+          <input matInput formControlName="license2">
+        </mat-form-field>
+
+        <button mat-raised-button class="submit-btn"
+        type="submit"
+        color="primary"
+        [disabled]="!teamForm.valid"
+        (click)="onSubmitPair()">
+        ok
+      </button>
+    </form>
+  </div>
+
+
 </div>
+
+  <div class="label">
+    <h2>
+      enregistrement :
+    </h2>
+  </div>
+
+  <div>
+
+      <app-articles></app-articles>
+
+ </div>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { Player } from '../tournament/tournament.interface';
 
 @Component({
   selector: 'app-player',
@@ -7,16 +7,19 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
   styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent {
-  @Input() player : string = "?";
+  @Input() player : Player = {firstName: 'toto', lastName:'titi'} ;
 
   byCard : boolean = true;
   labelPosition:  '3€' | '4€'  | '0€' = '3€';
   playerPresent : boolean = false;
 
 
+
 onPlayerClick() {
 this.playerPresent = !this.playerPresent;
 
 }
-
+getInitials(firstName:string, lastName:string) {
+  return firstName[0].toUpperCase() + lastName[0].toUpperCase();
+}
 }

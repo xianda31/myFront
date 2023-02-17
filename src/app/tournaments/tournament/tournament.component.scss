@@ -38,7 +38,9 @@ mat-card-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  align-items: center;
 }
+
 .buttons{
   display: flex;
   justify-content:flex-start;
@@ -47,6 +49,16 @@ mat-card-content {
   gap : 10px;
 }
 .menu{
-  height: 130px;
-  gap : 8px;
+  // height: 130px;
+  margin-top : 8px;
+}
+
+.label{
+  margin-left : 18px;
+
+}
+.label2{
+  margin-left : 18px;
+  margin-top: 18px;
+
 }
