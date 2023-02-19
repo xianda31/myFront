@@ -66,7 +66,6 @@ export class TournamentComponent implements OnInit {
         // console.log('get completed !');
         this.tournmntService.getTournamentFromServer()
           .subscribe((data: LicencePair[]) => {
-            // this.getteamsPairs()
             this.teams = data.map((license_pair) => ({
                 playerA: this.findPlayer(license_pair[0]),
                 playerB: this.findPlayer(license_pair[1])
@@ -80,12 +79,14 @@ export class TournamentComponent implements OnInit {
 
 
   onSubmitPair() {
-    console.log(this.teamForm.value)
+    // console.log(this.teamForm.value)
 
     this.teams.push({
       playerA : this.findPlayer(this.teamForm.controls['license1'].value),
       playerB : this.findPlayer(this.teamForm.controls['license2'].value)
     });
+
+    this.teamForm.reset();
   }
 
   findMember(license: string): number {

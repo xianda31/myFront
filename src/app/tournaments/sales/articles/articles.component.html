@@ -1,10 +1,24 @@
 
-<mat-grid-list cols="8" rowHeight="80px">
-  <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    <button mat-raised-button> {{tile.text}} </button>
-  </mat-grid-tile>
-</mat-grid-list>
+<mat-card-content>
+  <div *ngFor="let article of articles ; let indexArticle=index ">
+    <div class="item-list">
+      <h2>  {{article.genericName}}
+          <!-- <span class = "nobold" *ngIf="selectedOptionName !=='aucune' "> : {{selectionText}}    </span> -->
+
+
+      <!-- <mat-chip-listbox class="mat-mdc-chip-set-stacked">
+            <mat-chip-option *ngFor="let option of article.options " (selectionChange)="onChange(option)"> {{option.name}} </mat-chip-option>
+      </mat-chip-listbox> -->
+      </h2>
+      <mat-radio-group (change)="onChange($event)">
+        <mat-radio-button   *ngFor="let option of article.options ; let indexOption=index"
+                            [color]="color"
+                             value="[{{indexArticle}},{{indexOption}}]">
+                             {{option.name}} </mat-radio-button>
+      </mat-radio-group>
+
+  </div>
+
+  </div>
+  {{selectionText}}
+</mat-card-content>

@@ -6,6 +6,7 @@ import { TournamentsRoutingModule } from './tournaments-routing.module';
 import { MaterialsModule } from '../shared/materials.module';
 import { PlayerComponent } from './player/player.component';
 import { ArticlesComponent } from './sales/articles/articles.component';
+import { ShopService } from './sales/services/shop.service';
 
 
 
@@ -20,5 +21,6 @@ import { ArticlesComponent } from './sales/articles/articles.component';
     TournamentsRoutingModule,
     MaterialsModule
   ],
+  providers: [ShopService]
 })
 export class TournamentsModule { }
